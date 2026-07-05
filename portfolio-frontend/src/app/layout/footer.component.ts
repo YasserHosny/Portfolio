@@ -3,11 +3,12 @@ import { RouterLink } from '@angular/router';
 
 import { ProfileService } from '../core/services/profile.service';
 import { Profile } from '../core/models/profile.model';
+import { LinkRowComponent } from '../shared/components/link-row.component';
 
 @Component({
   selector: 'yh-footer',
   standalone: true,
-  imports: [RouterLink],
+  imports: [RouterLink, LinkRowComponent],
   template: `
     <footer class="foot">
       <div class="container foot__inner">
@@ -42,25 +43,21 @@ import { Profile } from '../core/models/profile.model';
           @if (profile(); as p) {
             <ul>
               <li>
-                <a [href]="p.contact.linkedin" target="_blank" rel="noopener noreferrer">
-                  LinkedIn
-                </a>
+                <yh-link-row icon="linkedin" label="LinkedIn" [href]="p.contact.linkedin" />
               </li>
               <li>
-                <a [href]="'mailto:' + p.contact.email">{{ p.contact.email }}</a>
+                <yh-link-row icon="email" [label]="p.contact.email"
+                             [href]="'mailto:' + p.contact.email" [external]="false" />
               </li>
               @if (p.contact.email_secondary) {
                 <li>
-                  <a [href]="'mailto:' + p.contact.email_secondary">
-                    {{ p.contact.email_secondary }}
-                  </a>
+                  <yh-link-row icon="email" [label]="p.contact.email_secondary"
+                               [href]="'mailto:' + p.contact.email_secondary" [external]="false" />
                 </li>
               }
               @if (p.contact.github) {
                 <li>
-                  <a [href]="p.contact.github" target="_blank" rel="noopener noreferrer">
-                    GitHub
-                  </a>
+                  <yh-link-row icon="github" label="@YasserHosny" [href]="p.contact.github" />
                 </li>
               }
             </ul>

@@ -6,12 +6,13 @@ import { ProfileService } from '../../core/services/profile.service';
 import { Profile } from '../../core/models/profile.model';
 
 import { CtaButtonComponent } from '../../shared/components/cta-button.component';
+import { LinkRowComponent } from '../../shared/components/link-row.component';
 import { SectionHeaderComponent } from '../../shared/components/section-header.component';
 
 @Component({
   selector: 'yh-contact',
   standalone: true,
-  imports: [ReactiveFormsModule, CtaButtonComponent, SectionHeaderComponent],
+  imports: [ReactiveFormsModule, CtaButtonComponent, LinkRowComponent, SectionHeaderComponent],
   templateUrl: './contact.component.html',
   styleUrls: ['./contact.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,

@@ -57,29 +57,35 @@
             <span class="eyebrow">Direct links</span>
             <ul>
               <li>
-                <span class="label mono">LinkedIn</span>
-                <a [href]="p.contact.linkedin" target="_blank" rel="noopener noreferrer">
-                  {{ p.contact.linkedin }}
-                </a>
+                <yh-link-row
+                  icon="linkedin"
+                  label="@yasser-hosny-mba-02832020"
+                  [href]="p.contact.linkedin" />
               </li>
               <li>
-                <span class="label mono">Email</span>
-                <a [href]="'mailto:' + p.contact.email">{{ p.contact.email }}</a>
+                <yh-link-row
+                  icon="email"
+                  [label]="p.contact.email"
+                  [href]="'mailto:' + p.contact.email"
+                  [external]="false"
+                  [copyValue]="p.contact.email" />
               </li>
               @if (p.contact.email_secondary) {
                 <li>
-                  <span class="label mono">Secondary</span>
-                  <a [href]="'mailto:' + p.contact.email_secondary">
-                    {{ p.contact.email_secondary }}
-                  </a>
+                  <yh-link-row
+                    icon="email"
+                    [label]="p.contact.email_secondary"
+                    [href]="'mailto:' + p.contact.email_secondary"
+                    [external]="false"
+                    [copyValue]="p.contact.email_secondary" />
                 </li>
               }
               @if (p.contact.github) {
                 <li>
-                  <span class="label mono">GitHub</span>
-                  <a [href]="p.contact.github" target="_blank" rel="noopener noreferrer">
-                    {{ p.contact.github }}
-                  </a>
+                  <yh-link-row
+                    icon="github"
+                    label="@YasserHosny"
+                    [href]="p.contact.github" />
                 </li>
               }
             </ul>

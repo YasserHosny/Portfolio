@@ -1,0 +1,235 @@
+@if (profile(); as p) {
+  <!-- ================== HERO ================== -->
+  <section class="hero">
+    <div class="container hero__grid">
+      <div class="hero__copy">
+        <span class="eyebrow">Founder Engineer · Senior Team Lead · MBA</span>
+        <h1>{{ p.hero_headline }}</h1>
+        <p class="hero__subtitle">{{ p.hero_subtitle }}</p>
+        <p class="hero__support">{{ p.supporting_line }}</p>
+
+        <div class="hero__ctas">
+          <yh-cta-button link="/product-lab">View Product Lab</yh-cta-button>
+          <yh-cta-button link="/case-studies" variant="ghost">Explore Case Studies</yh-cta-button>
+          <yh-cta-button href="/assets/yasser-hosny-resume.pdf" variant="outline">
+            Download Resume
+          </yh-cta-button>
+          <yh-cta-button link="/contact" variant="ghost">Contact Me</yh-cta-button>
+        </div>
+
+        <ul class="hero__positioning">
+          @for (tag of p.positioning; track tag) {
+            <li><yh-badge tone="secondary">{{ tag }}</yh-badge></li>
+          }
+        </ul>
+      </div>
+
+      <yh-founder-snapshot [snapshot]="p.snapshot" [flow]="p.process_flow" />
+    </div>
+  </section>
+
+  <!-- ================== EXPERIENCE ================== -->
+  <section class="section">
+    <div class="container">
+      <yh-section-header
+        eyebrow="20 years shipping software"
+        title="Experience highlights"
+        subtitle="From ERP systems to enterprise engineering leadership — senior delivery across .NET, Java, Python, Angular, React, AI, and cloud." />
+
+      <div class="xp">
+        @for (job of p.experience; track job.company; let i = $index) {
+          <article class="surface surface--hover xp__card">
+            <header class="xp__head">
+              <span class="mono xp__period">{{ job.period }}</span>
+              <div>
+                <h3 class="xp__role">{{ job.role }}</h3>
+                <span class="xp__company">{{ job.company }}</span>
+              </div>
+              <span class="xp__count mono">#{{ ordinal(i) }}</span>
+            </header>
+            <ul class="xp__highlights">
+              @for (h of job.highlights; track h) {
+                <li>{{ h }}</li>
+              }
+            </ul>
+            <div class="xp__tags">
+              @for (tag of job.tags; track tag) {
+                <yh-badge tone="primary">{{ tag }}</yh-badge>
+              }
+            </div>
+          </article>
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- ================== PRODUCT LAB PREVIEW ================== -->
+  <section class="section section--muted">
+    <div class="container">
+      <yh-section-header
+        eyebrow="Product Lab"
+        title="Product ideas & MVP concepts"
+        subtitle="Real problems, defined scope, technology fit. Every entry is a step from concept to shipped software." />
+
+      <div class="grid grid--3">
+        @for (item of productPreview(); track item.slug) {
+          <yh-product-card [item]="item" />
+        }
+      </div>
+
+      <div class="row-cta">
+        <yh-cta-button link="/product-lab">See all product experiments →</yh-cta-button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================== CASE STUDIES PREVIEW ================== -->
+  <section class="section">
+    <div class="container">
+      <yh-section-header
+        eyebrow="Selected case studies"
+        title="Problem → Role → Solution → Impact"
+        subtitle="Real engagements across enterprise engineering, NLP platforms, CRM, and ERP systems." />
+
+      <div class="grid grid--2">
+        @for (cs of casePreview(); track cs.slug) {
+          <yh-case-study-card [item]="cs" />
+        }
+      </div>
+
+      <div class="row-cta">
+        <yh-cta-button link="/case-studies">Read all case studies →</yh-cta-button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================== OPEN SOURCE PREVIEW ================== -->
+  <section class="section section--muted">
+    <div class="container">
+      <yh-section-header
+        eyebrow="Open source"
+        title="Projects on GitHub"
+        subtitle="Code that exists — payment gateways, LLM-powered voice APIs, form builders, and a .NET AutoMapper contribution." />
+
+      <div class="grid grid--3">
+        @for (project of projectPreview(); track project.slug) {
+          <yh-project-card [project]="project" />
+        }
+      </div>
+
+      <div class="row-cta">
+        <yh-cta-button link="/projects">See all projects →</yh-cta-button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================== CAPABILITIES ================== -->
+  @if (capabilities(); as cap) {
+    <section class="section section--muted">
+      <div class="container">
+        <yh-section-header
+          eyebrow="Technical capabilities"
+          title="Grouped by domain, not by percentage bars"
+          subtitle="A working stack for the whole product journey — from backend and data to leadership and business." />
+
+        <div class="grid grid--3">
+          @for (g of cap.groups; track g.group; let i = $index) {
+            <yh-capability-group [group]="g" [ordinal]="ordinal(i)" />
+          }
+        </div>
+      </div>
+    </section>
+
+    <!-- ================== CERTIFICATIONS ================== -->
+    <section class="section">
+      <div class="container">
+        <yh-section-header
+          eyebrow="Continuous learning"
+          title="Certifications & learning themes"
+          subtitle="Where I've been investing my learning budget — AI, product, security, and leadership." />
+
+        <div class="learning">
+          <div class="learning__themes">
+            <h3>Learning themes</h3>
+            <ul>
+              @for (theme of cap.learning_themes; track theme) {
+                <li><yh-badge tone="secondary">{{ theme }}</yh-badge></li>
+              }
+            </ul>
+          </div>
+          <div class="learning__certs">
+            <h3>Selected certifications</h3>
+            <div class="grid grid--2">
+              @for (c of cap.certifications; track c.name) {
+                <article class="surface surface--hover cert">
+                  <span class="mono cert__theme">{{ c.theme }}</span>
+                  <h4>{{ c.name }}</h4>
+                </article>
+              }
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  }
+
+  <!-- ================== LEADERSHIP & DELIVERY ================== -->
+  <section class="section section--muted">
+    <div class="container">
+      <yh-section-header
+        eyebrow="Leadership & delivery"
+        title="How I run engineering teams"
+        subtitle="Working software, mentored engineers, aligned stakeholders — reliably." />
+
+      <div class="grid grid--3">
+        <article class="surface surface--hover pillar">
+          <h3>Teams</h3>
+          <p>Multidisciplinary teams across backend, frontend, QA, and AI — with clear ownership and mentoring.</p>
+        </article>
+        <article class="surface surface--hover pillar">
+          <h3>Delivery</h3>
+          <p>Sprint planning, story sizing, technical roadmaps aligned with business outcomes and stakeholder needs.</p>
+        </article>
+        <article class="surface surface--hover pillar">
+          <h3>Architecture</h3>
+          <p>Microservices, event-driven architecture, DevOps, CI/CD, and clean architecture as the default.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================== LATEST UPDATES ================== -->
+  <section class="section">
+    <div class="container">
+      <yh-section-header
+        eyebrow="Latest updates"
+        title="What I've been working on"
+        subtitle="Certifications, product ideas, and learning milestones." />
+
+      <yh-update-timeline [items]="updatePreview()" />
+
+      <div class="row-cta">
+        <yh-cta-button link="/updates" variant="ghost">See full timeline →</yh-cta-button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================== FOUNDER PROFILE CTA ================== -->
+  <section class="section">
+    <div class="container">
+      <article class="cta-card">
+        <div>
+          <span class="eyebrow">Founder profile</span>
+          <h2>Startup-ready engineering leadership.</h2>
+          <p>
+            {{ p.founder_summary }}
+          </p>
+        </div>
+        <div class="cta-card__actions">
+          <yh-cta-button link="/about">Read About</yh-cta-button>
+          <yh-cta-button link="/contact" variant="ghost">Let's Build →</yh-cta-button>
+        </div>
+      </article>
+    </div>
+  </section>
+}

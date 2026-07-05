@@ -1,0 +1,100 @@
+.contact__grid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 1.5rem;
+  align-items: start;
+}
+@media (max-width: 900px) {
+  .contact__grid { grid-template-columns: 1fr; }
+}
+
+.contact__form {
+  display: grid;
+  gap: 1rem;
+  padding: 2rem;
+}
+
+.field {
+  display: grid;
+  gap: 0.4rem;
+}
+.field label {
+  font-family: var(--font-code);
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+}
+.opt { color: var(--color-text-muted); text-transform: none; letter-spacing: normal; font-size: 0.7rem; }
+
+input, textarea {
+  width: 100%;
+  padding: 0.85rem 1rem;
+  border-radius: var(--radius-md);
+  background: rgba(11, 17, 32, 0.6);
+  border: 1px solid var(--color-border);
+  color: var(--color-text-main);
+  font-family: var(--font-main);
+  font-size: 1rem;
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+input:focus, textarea:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+}
+textarea { resize: vertical; min-height: 140px; }
+
+.err {
+  color: #fca5a5;
+  font-size: 0.8rem;
+  font-family: var(--font-code);
+}
+.actions { display: flex; justify-content: flex-end; }
+
+.banner {
+  padding: 0.85rem 1rem;
+  border-radius: var(--radius-md);
+  font-size: 0.92rem;
+}
+.banner--success {
+  background: rgba(34, 197, 94, 0.12);
+  border: 1px solid rgba(34, 197, 94, 0.4);
+  color: #86efac;
+}
+.banner--error {
+  background: rgba(239, 68, 68, 0.12);
+  border: 1px solid rgba(239, 68, 68, 0.4);
+  color: #fca5a5;
+}
+
+.contact__side {
+  display: grid;
+  gap: 1.25rem;
+}
+.contact__side .surface { padding: 1.5rem; }
+.contact__side ul { list-style: none; padding: 0; margin: 0.5rem 0 0; display: grid; gap: 0.85rem; }
+.contact__side ul li { display: grid; grid-template-columns: 100px 1fr; gap: 0.75rem; align-items: baseline; }
+.contact__side .label {
+  color: var(--color-text-muted);
+  font-size: 0.7rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+.contact__side .muted { color: var(--color-text-muted); font-size: 0.9rem; }
+.contact__side a { word-break: break-all; }
+
+.bullets { list-style: none; padding: 0; margin: 0.5rem 0 0; display: grid; gap: 0.4rem; }
+.bullets li {
+  padding-left: 1.15rem;
+  position: relative;
+  color: var(--color-text-secondary);
+  grid-template-columns: none !important;
+  display: block !important;
+}
+.bullets li::before {
+  content: "▸";
+  color: var(--color-secondary);
+  position: absolute;
+  left: 0;
+}

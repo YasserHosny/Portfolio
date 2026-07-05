@@ -1,0 +1,102 @@
+@if (profile(); as p) {
+  <section class="section">
+    <div class="container about">
+      <header class="about__hero">
+        <div class="about__portrait">
+          <img
+            src="/assets/yasser-hosny.jpg"
+            alt="Portrait of Yasser Hosny, Founder Engineer and Software Development Senior Team Lead"
+            width="360"
+            height="360"
+            loading="eager"
+            decoding="async" />
+        </div>
+        <div class="about__intro">
+          <span class="eyebrow">Founder profile</span>
+          <h1>{{ p.brand }}</h1>
+          <p class="lede">{{ p.title }} — based in {{ p.location }}.</p>
+          <p>{{ p.summary }}</p>
+          <ul class="positioning">
+            @for (tag of p.positioning; track tag) {
+              <li><yh-badge tone="secondary">{{ tag }}</yh-badge></li>
+            }
+          </ul>
+        </div>
+      </header>
+
+      <div class="about__grid">
+        <article class="surface">
+          <span class="eyebrow">Career story</span>
+          <h2>20 years building software that runs businesses</h2>
+          <p>
+            Yasser started in ERP systems for hospitals, farms, and trading companies,
+            grew into CRM and multi-tenant SaaS for US and Canadian clients, then led
+            an NLP and big data intelligence platform at Z2DATA, and today leads
+            enterprise engineering at Arrow Electronics / SiliconExpert.
+          </p>
+          <p>
+            The through-line: turning ambiguous business needs into working software
+            that scales — with teams that trust each other and roadmaps that hold up
+            in the real world.
+          </p>
+        </article>
+
+        <article class="surface">
+          <span class="eyebrow">Leadership philosophy</span>
+          <h2>Mentor first, ship reliably, keep architecture honest</h2>
+          <ul class="bullets">
+            <li>Give engineers real ownership — and back them when it counts.</li>
+            <li>Sprint planning that respects the codebase and the business.</li>
+            <li>DevOps, CI/CD, and clean architecture as the default, not the exception.</li>
+            <li>Cross-functional coordination between backend, frontend, QA, and AI teams.</li>
+            <li>Technical roadmaps aligned with business outcomes and stakeholder needs.</li>
+          </ul>
+        </article>
+
+        <article class="surface">
+          <span class="eyebrow">Product & business mindset</span>
+          <h2>MBA-grounded, product-minded, AI-enabled</h2>
+          <p>
+            Yasser holds an MBA and treats software as a business system. He works
+            comfortably across product roadmaps, user personas, MVP thinking, and
+            AI-assisted product documentation — bridging the language of engineering
+            with the language of the business.
+          </p>
+        </article>
+
+        <article class="surface">
+          <span class="eyebrow">Education</span>
+          <h2>Formal credentials</h2>
+          <ul class="edu">
+            @for (edu of p.education; track edu.institution) {
+              <li>
+                <span class="mono edu__period">{{ edu.period }}</span>
+                <div>
+                  <strong>{{ edu.degree }}</strong>
+                  <span>{{ edu.institution }}</span>
+                </div>
+              </li>
+            }
+          </ul>
+        </article>
+      </div>
+
+      <section class="value">
+        <span class="eyebrow">What I bring to a startup</span>
+        <h2>Founder Engineer, technical cofounder candidate, startup-ready engineering leader</h2>
+        <div class="grid grid--3">
+          @for (item of p.startup_value; track item) {
+            <article class="surface value__card">
+              <p>{{ item }}</p>
+            </article>
+          }
+        </div>
+      </section>
+
+      <div class="about__cta">
+        <yh-cta-button link="/contact">Let's Build →</yh-cta-button>
+        <yh-cta-button link="/product-lab" variant="ghost">See Product Lab</yh-cta-button>
+      </div>
+    </div>
+  </section>
+}

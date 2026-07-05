@@ -1,0 +1,101 @@
+<section class="section">
+  <div class="container contact">
+    <yh-section-header
+      eyebrow="Contact"
+      title="Let's build something worth shipping."
+      subtitle="Open to technical cofounder discussions, product collaboration, consulting, enterprise software leadership, and software delivery opportunities." />
+
+    <div class="contact__grid">
+      <form class="surface contact__form" [formGroup]="form" (ngSubmit)="submit()" novalidate>
+        <div class="field">
+          <label for="name">Name</label>
+          <input id="name" type="text" formControlName="name" autocomplete="name" />
+          @if (form.controls.name.touched && form.controls.name.invalid) {
+            <span class="err">Enter your full name (min 2 characters).</span>
+          }
+        </div>
+
+        <div class="field">
+          <label for="email">Email</label>
+          <input id="email" type="email" formControlName="email" autocomplete="email" />
+          @if (form.controls.email.touched && form.controls.email.invalid) {
+            <span class="err">Enter a valid email.</span>
+          }
+        </div>
+
+        <div class="field">
+          <label for="company">Company <span class="opt">(optional)</span></label>
+          <input id="company" type="text" formControlName="company" autocomplete="organization" />
+        </div>
+
+        <div class="field">
+          <label for="message">Message</label>
+          <textarea id="message" rows="6" formControlName="message"></textarea>
+          @if (form.controls.message.touched && form.controls.message.invalid) {
+            <span class="err">Tell me a little more (min 10 characters).</span>
+          }
+        </div>
+
+        <div class="actions">
+          <yh-cta-button>
+            {{ submitting() ? 'Sending…' : 'Send message' }}
+          </yh-cta-button>
+        </div>
+
+        @if (successMessage(); as msg) {
+          <div class="banner banner--success">{{ msg }}</div>
+        }
+        @if (errorMessage(); as msg) {
+          <div class="banner banner--error">{{ msg }}</div>
+        }
+      </form>
+
+      <aside class="contact__side">
+        @if (profile(); as p) {
+          <article class="surface">
+            <span class="eyebrow">Direct links</span>
+            <ul>
+              <li>
+                <span class="label mono">LinkedIn</span>
+                <a [href]="p.contact.linkedin" target="_blank" rel="noopener noreferrer">
+                  {{ p.contact.linkedin }}
+                </a>
+              </li>
+              <li>
+                <span class="label mono">Email</span>
+                <a [href]="'mailto:' + p.contact.email">{{ p.contact.email }}</a>
+              </li>
+              @if (p.contact.email_secondary) {
+                <li>
+                  <span class="label mono">Secondary</span>
+                  <a [href]="'mailto:' + p.contact.email_secondary">
+                    {{ p.contact.email_secondary }}
+                  </a>
+                </li>
+              }
+              @if (p.contact.github) {
+                <li>
+                  <span class="label mono">GitHub</span>
+                  <a [href]="p.contact.github" target="_blank" rel="noopener noreferrer">
+                    {{ p.contact.github }}
+                  </a>
+                </li>
+              }
+            </ul>
+          </article>
+
+          <article class="surface">
+            <span class="eyebrow">Open to</span>
+            <ul class="bullets">
+              <li>Technical cofounder discussions</li>
+              <li>Product collaboration</li>
+              <li>Consulting engagements</li>
+              <li>Enterprise software leadership</li>
+              <li>Software delivery opportunities</li>
+            </ul>
+          </article>
+        }
+      </aside>
+    </div>
+  </div>
+</section>

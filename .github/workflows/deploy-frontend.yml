@@ -1,0 +1,64 @@
+name: Deploy Frontend
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'portfolio-frontend/**'
+      - '.github/workflows/deploy-frontend.yml'
+  workflow_dispatch:
+
+env:
+  REGISTRY: ghcr.io
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: docker/login-action@v3
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Normalize image name casing
+        id: normalize_image
+        run: echo "image_name=${GITHUB_REPOSITORY_OWNER,,}/portfolio-frontend" >> "$GITHUB_OUTPUT"
+
+      - uses: docker/metadata-action@v5
+        id: meta
+        env:
+          IMAGE_NAME: ${{ steps.normalize_image.outputs.image_name }}
+        with:
+          images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+          tags: |
+            type=sha,prefix=
+            type=raw,value=latest,enable={{is_default_branch}}
+
+      - uses: docker/setup-buildx-action@v3
+
+      - uses: docker/build-push-action@v5
+        env:
+          IMAGE_NAME: ${{ steps.normalize_image.outputs.image_name }}
+        with:
+          context: ./portfolio-frontend
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
+          platforms: linux/amd64
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
+      - uses: BunnyWay/actions/container-update-image@main
+        env:
+          IMAGE_NAME: ${{ steps.normalize_image.outputs.image_name }}
+        with:
+          api_key: ${{ secrets.BUNNY_API_KEY }}
+          app_id: ${{ secrets.BUNNY_FRONTEND_APP_ID }}
+          container: portfolio-frontend
+          image_tag: latest

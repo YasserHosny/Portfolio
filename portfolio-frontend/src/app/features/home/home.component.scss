@@ -1,0 +1,172 @@
+/* --------------------------- HERO --------------------------- */
+.hero {
+  padding: 5rem 0 3.5rem;
+  position: relative;
+  overflow: hidden;
+}
+.hero__grid {
+  display: grid;
+  grid-template-columns: 1.35fr 1fr;
+  gap: 3rem;
+  align-items: center;
+}
+.hero__copy h1 {
+  margin: 0.75rem 0 1rem;
+  background: linear-gradient(120deg, #F8FAFC 20%, #93c5fd 80%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.hero__subtitle {
+  font-size: 1.15rem;
+  color: var(--color-text-secondary);
+  max-width: 40rem;
+}
+.hero__support {
+  color: var(--color-text-muted);
+  max-width: 40rem;
+  font-size: 0.98rem;
+}
+.hero__ctas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin: 1.75rem 0 1.5rem;
+}
+.hero__positioning {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+}
+
+@media (max-width: 960px) {
+  .hero__grid { grid-template-columns: 1fr; gap: 2.5rem; }
+}
+@media (max-width: 480px) {
+  .hero { padding-top: 3rem; }
+  .hero__ctas > * { width: 100%; }
+}
+
+/* -------------------------- Sections ------------------------ */
+.section--muted { background: rgba(17, 24, 39, 0.55); border-top: 1px solid var(--color-border-soft); border-bottom: 1px solid var(--color-border-soft); }
+
+.row-cta {
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+/* -------------------------- Experience ---------------------- */
+.xp { display: grid; gap: 1rem; }
+.xp__card { display: grid; gap: 1rem; }
+.xp__head {
+  display: grid;
+  grid-template-columns: 200px 1fr auto;
+  gap: 1rem;
+  align-items: center;
+}
+.xp__period {
+  color: var(--color-secondary);
+  font-size: 0.85rem;
+  padding: 0.35rem 0.7rem;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  background: rgba(20, 184, 166, 0.08);
+  display: inline-block;
+  justify-self: start;
+}
+.xp__role { margin: 0; }
+.xp__company { color: var(--color-text-muted); font-size: 0.92rem; }
+.xp__count { color: var(--color-text-muted); font-size: 0.85rem; }
+.xp__highlights {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 0.35rem;
+}
+.xp__highlights li {
+  color: var(--color-text-secondary);
+  padding-left: 1.25rem;
+  position: relative;
+  font-size: 0.95rem;
+}
+.xp__highlights li::before {
+  content: "▸";
+  color: var(--color-primary);
+  position: absolute;
+  left: 0;
+}
+.xp__tags { display: flex; flex-wrap: wrap; gap: 0.35rem; }
+
+@media (max-width: 640px) {
+  .xp__head { grid-template-columns: 1fr; }
+}
+
+/* -------------------------- Pillars ------------------------- */
+.pillar h3 { margin: 0 0 0.5rem; }
+.pillar p { margin: 0; color: var(--color-text-secondary); }
+
+/* -------------------------- Certifications ------------------ */
+.learning {
+  display: grid;
+  grid-template-columns: 1fr 1.5fr;
+  gap: 2rem;
+  align-items: start;
+}
+.learning h3 {
+  font-family: var(--font-code);
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--color-text-muted);
+  margin: 0 0 1rem;
+}
+.learning__themes ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+.cert { padding: 1.1rem; display: flex; flex-direction: column; gap: 0.35rem; }
+.cert__theme {
+  color: var(--color-secondary);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+}
+.cert h4 { margin: 0; font-size: 1rem; }
+
+@media (max-width: 900px) {
+  .learning { grid-template-columns: 1fr; }
+}
+
+/* -------------------------- CTA card ------------------------ */
+.cta-card {
+  display: grid;
+  grid-template-columns: 1.5fr auto;
+  gap: 2rem;
+  align-items: center;
+  padding: 2.25rem;
+  background: linear-gradient(120deg, rgba(59, 130, 246, 0.12), rgba(20, 184, 166, 0.10));
+  border: 1px solid rgba(59, 130, 246, 0.35);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-card);
+}
+.cta-card h2 { margin: 0.35rem 0 0.75rem; }
+.cta-card p { margin: 0; color: var(--color-text-secondary); }
+.cta-card__actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  min-width: 200px;
+}
+
+@media (max-width: 800px) {
+  .cta-card { grid-template-columns: 1fr; }
+}

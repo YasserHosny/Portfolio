@@ -16,6 +16,7 @@ import { SectionHeaderComponent } from '../../shared/components/section-header.c
     <section class="section">
       <div class="container">
         <yh-section-header
+          level="h1"
           eyebrow="Open source"
           title="Projects on GitHub"
           subtitle="Every public repo — code that exists, not just concepts. From payment gateways to LLM-powered voice APIs and a .NET AutoMapper contribution." />

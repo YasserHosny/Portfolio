@@ -14,6 +14,7 @@ import { UpdateTimelineComponent } from '../../shared/components/update-timeline
     <section class="section">
       <div class="container">
         <yh-section-header
+          level="h1"
           eyebrow="Latest updates"
           title="Certifications, product ideas, releases, and learning milestones"
           subtitle="A running timeline of what I've shipped, learned, and validated." />

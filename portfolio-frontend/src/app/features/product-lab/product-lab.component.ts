@@ -14,6 +14,7 @@ import { SectionHeaderComponent } from '../../shared/components/section-header.c
     <section class="section">
       <div class="container">
         <yh-section-header
+          level="h1"
           eyebrow="Product Lab"
           title="Product ideas, MVPs, and experiments"
           subtitle="Focused on solving real business problems — every entry lists the problem, target users, MVP scope, status, and stack." />

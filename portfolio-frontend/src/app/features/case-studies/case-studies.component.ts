@@ -14,6 +14,7 @@ import { SectionHeaderComponent } from '../../shared/components/section-header.c
     <section class="section">
       <div class="container">
         <yh-section-header
+          level="h1"
           eyebrow="Case Studies"
           title="Real engagements — Problem, Role, Solution, Impact"
           subtitle="Enterprise engineering leadership, NLP and big data intelligence platforms, CRM systems, and ERP for multiple business domains." />

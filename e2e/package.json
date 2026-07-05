@@ -1,0 +1,18 @@
+{
+  "name": "portfolio-e2e",
+  "private": true,
+  "version": "1.0.0",
+  "description": "End-to-end tests for the Yasser Hosny portfolio",
+  "scripts": {
+    "test": "playwright test",
+    "test:local": "BASE_URL=http://localhost:8080 playwright test",
+    "test:prod": "BASE_URL=https://yasser-hosny.iron-sys.com playwright test",
+    "test:headed": "playwright test --headed",
+    "install-browsers": "playwright install --with-deps chromium"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.49.0",
+    "@types/node": "^20.14.0",
+    "typescript": "~5.5.0"
+  }
+}

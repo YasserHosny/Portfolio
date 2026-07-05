@@ -8,7 +8,11 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
       @if (eyebrow) {
         <span class="eyebrow">{{ eyebrow }}</span>
       }
-      <h2 class="title">{{ title }}</h2>
+      @if (level === 'h1') {
+        <h1 class="title">{{ title }}</h1>
+      } @else {
+        <h2 class="title">{{ title }}</h2>
+      }
       @if (subtitle) {
         <p class="subtitle">{{ subtitle }}</p>
       }
@@ -40,4 +44,6 @@ export class SectionHeaderComponent {
   @Input({ required: true }) title!: string;
   @Input() eyebrow?: string;
   @Input() subtitle?: string;
+  /** `h1` for landing-page headers (one per page), `h2` for in-page section dividers. */
+  @Input() level: 'h1' | 'h2' = 'h2';
 }

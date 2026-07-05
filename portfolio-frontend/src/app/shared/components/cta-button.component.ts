@@ -31,7 +31,7 @@ import { RouterLink } from '@angular/router';
       </a>
     } @else {
       <button
-        type="button"
+        [type]="type"
         class="cta"
         [class.cta--ghost]="variant === 'ghost'"
         [class.cta--outline]="variant === 'outline'"
@@ -97,4 +97,6 @@ export class CtaButtonComponent {
   @Input() href?: string;
   @Input() external = false;
   @Input() variant: 'primary' | 'ghost' | 'outline' = 'primary';
+  /** Only applies to the `<button>` fallback (no `link`/`href`). */
+  @Input() type: 'button' | 'submit' | 'reset' = 'button';
 }

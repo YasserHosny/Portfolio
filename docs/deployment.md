@@ -15,7 +15,7 @@ one Bunny app.
 | Container | Image source | Public port | Custom hostname |
 |---|---|---|---|
 | `portfolio-backend`  | `ghcr.io/<owner>/portfolio-backend:latest`  | 8000 | `portfolio-api.iron-sys.com` |
-| `portfolio-frontend` | `ghcr.io/<owner>/portfolio-frontend:latest` |   80 | `portfolio.iron-sys.com`     |
+| `portfolio-frontend` | `ghcr.io/<owner>/portfolio-frontend:latest` |   80 | `yasser-hosny.iron-sys.com`     |
 
 Because the two containers share a network namespace:
 
@@ -29,7 +29,7 @@ Because the two containers share a network namespace:
 
 ```
                           ┌──────────────────────────────────────────┐
-   portfolio.iron-sys.com ─▶│  Bunny CDN + TLS + DNS                   │
+   yasser-hosny.iron-sys.com ─▶│  Bunny CDN + TLS + DNS                   │
                           │        │                                  │
                           │        ▼                                  │
                           │  ┌────────────────────────────────────┐   │
@@ -60,7 +60,7 @@ Because the two containers share a network namespace:
      (Magic Containers → Container Registries → Add) with a GitHub PAT scoped
      to `read:packages`.
 4. Set **custom hostnames**:
-   - `portfolio.iron-sys.com` → frontend container (port 80)
+   - `yasser-hosny.iron-sys.com` → frontend container (port 80)
    - `portfolio-api.iron-sys.com` → backend container (port 8000) — optional,
      useful for docs (`/api/docs`) and direct API testing. If you skip this,
      the backend remains reachable only via the frontend's `/api/*` proxy,
@@ -72,7 +72,7 @@ Because the two containers share a network namespace:
    ```
    APP_ENV=production
    APP_DEBUG=false
-   CORS_ORIGINS=https://portfolio.iron-sys.com,https://portfolio-api.iron-sys.com
+   CORS_ORIGINS=https://yasser-hosny.iron-sys.com,https://portfolio-api.iron-sys.com
    SMTP_HOST=smtp.zoho.com
    SMTP_PORT=465
    SMTP_USE_SSL=true
@@ -153,7 +153,7 @@ Path filters mean a docs-only or root-config change never triggers a deploy.
   Bunny's default health check hits `GET /api/health` on the backend and
   `GET /` on the frontend.
 - From outside:
-  - `curl https://portfolio.iron-sys.com/api/health` → `{"status":"ok",...}`
+  - `curl https://yasser-hosny.iron-sys.com/api/health` → `{"status":"ok",...}`
   - `curl https://portfolio-api.iron-sys.com/api/health` → same (if you
     exposed the backend hostname)
 - Contact-form smoke test: submit a real message from `/contact`; it should
@@ -182,7 +182,7 @@ compose sets `BACKEND_HOST=backend` locally and Bunny sets
 
 ## Observability (deferred to Round 2)
 
-- Uptime — UptimeRobot ping against `https://portfolio.iron-sys.com/api/health`
+- Uptime — UptimeRobot ping against `https://yasser-hosny.iron-sys.com/api/health`
 - Web analytics — Cloudflare Web Analytics or Plausible
 - Error tracking — Sentry (both backend and frontend)
 - Structured logs — Bunny streams container stdout; forward to a sink you
